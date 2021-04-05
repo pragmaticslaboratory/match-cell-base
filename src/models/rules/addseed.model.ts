@@ -1,6 +1,9 @@
-import { Cell } from './cell.model';
+/******************************
+ * IMPORTS
+ ******************************/
+import { Cell } from '../cell.model';
 import { ComposableRule } from './composablerule.model';
-import { Pattern } from './pattern.interface';
+import { Pattern } from '../patterns/pattern.interface';
 export class AddSeed extends ComposableRule{
     apply(cells: Cell[], pattern: Pattern): Cell[]{
         return (cells.length === 0) ? [new Cell(pattern, null)] : cells;

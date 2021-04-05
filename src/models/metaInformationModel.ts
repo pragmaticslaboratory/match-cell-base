@@ -1,5 +1,8 @@
+/******************************
+ * IMPORTS
+ ******************************/
 import { Cell } from './cell.model';
-export class Enviroment{
+export class MetaInformation{
 
     constructor(
         public index: number,

@@ -1,7 +1,10 @@
+/******************************
+ * IMPORTS
+ ******************************/
 import { Pattern } from './pattern.interface';
-import { Match } from './match.model';
-import { Stuck } from './stuck.model';
-import { MatchResult } from './matchresult.interface';
+import { Match } from '../match_result/match.model';
+import { Stuck } from '../match_result/stuck.model';
+import { MatchResult } from '../match_result/matchresult.interface';
 export class Symbol implements Pattern{
     constructor(
         public _pattern: string

@@ -1,6 +1,9 @@
-import { Cell } from './cell.model';
+/******************************
+ * IMPORTS
+ ******************************/
+import { Cell } from '../cell.model';
 import { Rule } from './rule.interface';
-import { Pattern } from './pattern.interface';
+import { Pattern } from '../patterns/pattern.interface';
 export abstract class ComposableRule implements Rule {
     protected children: Rule[] = [];
     

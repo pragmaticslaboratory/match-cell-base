@@ -1,9 +1,13 @@
+/******************************
+ * IMPORTS
+ ******************************/
 import { Cell } from './cell.model';
-import { Rule } from './rule.interface';
-import { Identity } from './identity.model';
-import { Pattern } from './pattern.interface';
-import { OnlyOneMatch } from './onlyOneMatch.model';
-import { Evolution } from './evolution.model';
+import { Rule } from './rules/rule.interface';
+import { Identity } from './rules/identity.model';
+import { Pattern } from './patterns/pattern.interface';
+import { OnlyOneMatch } from './evolution/onlyOneMatch.model';
+import { Evolution } from './evolution/evolution.interface';
+
 export class Solution{
     
     constructor(

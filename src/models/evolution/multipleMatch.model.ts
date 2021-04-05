@@ -1,6 +1,9 @@
-import { Cell } from './cell.model';
-import { Enviroment } from './enviroment.model';
-import { Evolution } from './evolution.model';
+/******************************
+ * IMPORTS
+ ******************************/
+ import { Cell } from '../cell.model';
+import { MetaInformation } from '../metaInformationModel';
+import { Evolution } from './evolution.interface';
 export class MultipleMatch implements Evolution{
     
     evolve(cells: Cell[], token: string, idx: number = 0): Cell[]{
@@ -8,7 +11,7 @@ export class MultipleMatch implements Evolution{
         for(let j=0; j < cellsEvolution.length; j++){
             let cellIteration: Cell = cellsEvolution[j].react(token,idx)[0];
             if(cellIteration !== undefined && cellIteration != cellsEvolution[j]){
-                cellIteration.environment = new Enviroment(idx, cells[j]);
+                cellIteration.metaInformation = new MetaInformation(idx, cells[j]);
                 cells.push(cellIteration);
             }
         }  

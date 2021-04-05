@@ -10,6 +10,12 @@ import { Evolution } from './evolution/evolution.interface';
 
 export class Solution{
     
+    /**
+     * Constructor
+     * @param cells listado de celulas iniciales de la solución, contienen el patron a evaluar 
+     * @param evolution la regla de evolución de las celulas de la solución (OOM or MM)
+     * @param rules Listado de reglas post-evolucion de las celulas, utilizadas para realizar eventos postumos como addSeed o identity
+     */
     constructor(
         public cells: Cell[],
         public evolution?: Evolution,
@@ -20,13 +26,19 @@ export class Solution{
         this.rules = (rules === undefined)? new Identity() : rules;
     }
 
-    match(token: string){
-        // INITIAL PATTERN
+    /**
+     * Método para realizar el match de un token con los patrones de las celulas de la solución
+     * aplicando las diferentes reglas de evolución y postevolución establecidas en el sistema
+     * @param token string que se desea evaluar con las celulas de la solución
+     */
+    match(token: string): void{
+        // Realizamos copia del patrón inicial de la solución, que será utilizada por alguna reglas (ex. addSeed)
         const initialPattern: Pattern = this.cells[0].pattern;
         console.log(` Token: ${token} `);
         console.log(` Patron Inicial: ${initialPattern}`);
+        // Iteramos por todos carácteres del token a evaluar o hasta que no existan más celulas en la solución
         for(let i=0; i < token.length && this.cells.length > 0;i++){
-            // TOKEN SYMBOL
+            // Obtenemos el char del token a evaluar
             let symTkn: string = token[i];
             
             // CELLS EVOLUTION

@@ -8,8 +8,10 @@ import { Stuck } from '../../match_result/stuck.model';
 import { Pattern } from '../../patterns/pattern.interface';
 import { Sequence } from '../../patterns/sequence.model';
 import { PatternVisitor } from './patternVisitor.interface';
+import { MetaInformation } from '../../metaInformationModel';
+import { Skip } from '../../match_result/skip.model';
 
-export class PatternResultVisitor implements PatternVisitor{
+export class PatternSequenceVisitor implements PatternVisitor{
 
     /**
      * Función de evaluación para la clase Match
@@ -39,6 +41,18 @@ export class PatternResultVisitor implements PatternVisitor{
      */
     visitEvaluationPatternAdvance(element: Advance, rightPattern: Pattern): MatchResult {
         return new Advance(new Sequence(element.pattern, rightPattern));
+    }
+
+    /**
+     * Función de evaluación para la clase Skip
+     * @param element objeto skip a evaluar
+     * @param rightPattern patron derecho restante de la celula
+     * @param environment meta información del entorno
+     * @param token token a evaluar (char)
+     * @returns un objeto de tipo Skip con el patron actual del elemento skip y el patron derecho restante de la celula
+     */
+     visitEvaluationPatternSkip(element: Skip, rightPattern: Pattern, environment: MetaInformation, token: string): MatchResult {
+        return rightPattern.evaluation(token, environment );
     }
 
 }

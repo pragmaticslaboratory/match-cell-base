@@ -6,6 +6,7 @@ import { Pattern } from '../patterns/pattern.interface';
 import { CellVisitor } from '../visitors/cells/cellVisitor.interface';
 import { Cell } from '../cell.model';
 import { PatternVisitor } from '../visitors/patterns/patternVisitor.interface';
+import { MetaInformation } from '../metaInformationModel';
 
 export class Advance implements MatchResult{
 
@@ -35,9 +36,11 @@ export class Advance implements MatchResult{
      * Funcion para evaluar el patron de una celula en base al tipo de clase de matchresult
      * @param visitor patron visitor
      * @param rightPattern patron derecho de la celula actual
+     * @param environment meta información del entorno
+     * @param token token a evaluar (char)
      * @returns el matchresult al evaluar la clase advance en el patron visitor
      */
-    evaluation(visitor: PatternVisitor, rightPattern: Pattern): MatchResult{
+    evaluation(visitor: PatternVisitor, rightPattern: Pattern, environment: MetaInformation, token: string): MatchResult{
         return visitor.visitEvaluationPatternAdvance(this, rightPattern);
     }
 }

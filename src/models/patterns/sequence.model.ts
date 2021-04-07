@@ -4,7 +4,7 @@
 import { MatchResult } from '../match_result/matchresult.interface';
 import { Pattern } from './pattern.interface';
 import { MetaInformation } from '../metaInformationModel';
-import { PatternResultVisitor } from '../visitors/patterns/patternResultVisitor.model';
+import { PatternSequenceVisitor } from '../visitors/patterns/patternSequenceVisitor.model';
 
 export class Sequence implements Pattern{
 
@@ -32,11 +32,11 @@ export class Sequence implements Pattern{
         const result: MatchResult = this.left.evaluation(token, environment);
         // DOUBLE DISPATCH - VISITOR
         // Instanciamos un pattern result visitor concreto para evaluar el resultado de la evaluación del token 
-        const patternVisitor: PatternResultVisitor = new PatternResultVisitor();
+        const patternVisitor: PatternSequenceVisitor = new PatternSequenceVisitor();
         // Evaluamos dicho visitor con el match result del pattern del token resultante
         // con el fin de obtener y generar la clase matchresult correspondiente al estado de coincidencia
         // del token (advance, match, stuck, etc)
-        return result.evaluation(patternVisitor, this.right);
+        return result.evaluation(patternVisitor, this.right, environment, token);
     }
     
     /**

@@ -5,6 +5,7 @@
 import { CellVisitor } from '../visitors/cells/cellVisitor.interface';
 import { Pattern } from '../patterns/pattern.interface';
 import { PatternVisitor } from '../visitors/patterns/patternVisitor.interface';
+import { MetaInformation } from '../metaInformationModel';
 
 export interface MatchResult{
 
@@ -21,6 +22,8 @@ export interface MatchResult{
      * Funcion para evaluar el patron de una celula en base al tipo de clase de matchresult
      * @param visitor patron visitor
      * @param rightPattern patron derecho de la celula actual
+     * @param environment meta información del entorno
+     * @param token token a evaluar (char)
      */
-    evaluation(visitor: PatternVisitor, rightPattern: Pattern): MatchResult;
+    evaluation(visitor: PatternVisitor, rightPattern: Pattern, environment: MetaInformation, token: string): MatchResult;
 }

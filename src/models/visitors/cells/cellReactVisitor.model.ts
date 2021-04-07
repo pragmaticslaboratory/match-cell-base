@@ -4,6 +4,7 @@
 import { Cell } from "../../cell.model";
 import { Advance } from "../../match_result/advance.model";
 import { Match } from "../../match_result/match.model";
+import { Skip } from "../../match_result/skip.model";
 import { Stuck } from "../../match_result/stuck.model";
 import { MetaInformation } from "../../metaInformationModel";
 import { CellVisitor } from "./cellVisitor.interface";
@@ -19,7 +20,7 @@ export class CellReactVisitor implements CellVisitor{
      * @returns al existir un match con el token actual, se retorna un listado de celulas vacio (que representa una celula match)
      */
     visitReactCellMatch(element: Match, token: string, index: number): Cell[] {
-        console.log(`MATCH. Symbol: ${token} ; Token Index: ${index} `);
+        this.showMatch(token, index);
         return [];
     }
 
@@ -44,5 +45,27 @@ export class CellReactVisitor implements CellVisitor{
     visitReactCellAdvance(element: Advance, metaInformation: MetaInformation): Cell[] {
         return [new Cell(element.pattern, metaInformation)];
     }
+
+    /**
+     * Funcion para evaluar la rección de la clase Skip, para las clausuras y clausuras positivos
+     * Se indica por consola el match del token y el indice asociado
+     * @param element objeto match a evaluar
+     * @param token token de evaluación de la celula (char)
+     * @param index indice asociado al token
+     * @returns al existir un skip con el token actual, se retorna un listado de celulas vacio (que representa una celula match)
+     * debido a que se cumple la clausura asociada
+     */
+    visitReactCellSkip(element: Skip, token: string, index: number): Cell[] {
+        this.showMatch(token, index);
+        return [];
+    }
     
+    /**
+     * Imprime el match de un token y su indice asociado
+     * @param token token de evaluación de la celula (char)
+     * @param index indice asociado al token
+     */
+    showMatch(token: string, index: number):void{
+        console.log(`MATCH. Symbol: ${token} ; Token Index: ${index} `);
+    }
 }

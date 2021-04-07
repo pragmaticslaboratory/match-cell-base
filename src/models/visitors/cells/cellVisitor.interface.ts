@@ -6,6 +6,7 @@ import { Match } from '../../match_result/match.model';
 import { Stuck } from '../../match_result/stuck.model';
 import { Advance } from '../../match_result/advance.model';
 import { MetaInformation } from '../../metaInformationModel';
+import { Skip } from '../../match_result/skip.model';
 
 /**
  * Patron visitor - double dispatch para el reconocimiento de clases especificas dentro de la jerarquia de matchresult
@@ -35,4 +36,12 @@ export interface CellVisitor{
      * @param metaInformation Meta información asociada a la celula actual
      */
     visitReactCellAdvance(element: Advance, metaInformation: MetaInformation): Cell[];
+
+    /**
+     * Funcion para evaluar la rección de la clase Skip
+     * @param element objeto skip a evaluar
+     * @param token token de evaluación de la celula (char)
+     * @param index indice asociado al token
+     */
+     visitReactCellSkip(element: Skip, token: string, index: number): Cell[];
 }
